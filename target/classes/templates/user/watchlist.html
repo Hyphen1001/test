@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="user/_fragments :: head(~{::title})">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>博客</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/semantic-ui/2.2.4/semantic.min.css" >
+    <link rel="stylesheet" href="../../static/css/me.css" >
+</head>
+<body>
+
+<!--导航-->
+<nav th:replace="user/_fragments :: menu(0)" class="ui inverted attached segment m-padded-tb-mini m-shadow-small" >
+</nav>
+
+<!--中间内容-->
+<div  class="m-container m-padded-tb-big">
+    <div class="ui container">
+        <div class="ui stackable grid">
+            <!--左边博客列表-->
+            <div class="eleven wide column">
+                <!--header-->
+                <div class="ui top attached segment">
+                    <div class="ui middle aligned two column grid">
+                        <div class="column">
+                            <h3 class="ui teal header" th:text="${state}">粉丝</h3>
+                        </div>
+                        <div class="right aligned column">
+                            共 <h2 class="ui orange header m-inline-block m-text-thin" th:text="${#arrays.length(users)}"> 14 </h2> 人
+                        </div>
+                    </div>
+                </div>
+
+				<div class="ui attached segment m-padded-tb-large">
+        			<a href="#" th:href="@{/user/userzone/{id}(id=${userd.id})}"  class="ui basic left pointing large label m-margin-tb-tiny"  th:each="userd : ${users}">
+          			<img class="ui avatar image" src="https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=1408233282,1483083519&fm=26&gp=0.jpg" th:src="@{${userd.avatar}}">
+           			<span th:text="${userd.nickname}">zzy</span>
+           			<br>
+        			</a>
+      			</div>
+             
+              
+            </div>
+
+            <!--右边的top-->
+            <div class="five wide column">
+                <!--分类-->
+                <div class="ui segments">
+                    <div class="ui secondary segment">
+                        <div class="ui two column grid">
+                            <div class="column">
+                                <i class="address book icon"></i>个人信息
+                            </div>
+                        </div>
+                     <div class="ui teal segment">
+                         <div class="text">
+                             <img class="ui centered medium circular image" src="https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=1408233282,1483083519&fm=26&gp=0.jpg" th:src="@{${user.avatar}}" style="width: 110px">
+
+                         </div>
+                         <div class="ui teal segment" >
+                      			昵称: <div  class="ui black header m-inline-block m-text-thin" th:text="${user.nickname}">123</div><br>
+                      			邮箱: <div  class="ui black header m-inline-block m-text-thin" th:text="${user.email}">abc</div><br>
+                            	入站时间: <div  class="ui black header m-inline-block m-text-thin" th:text="${user.createTime}">2020-06-01</div>
+                         </div>
+                         <div class="ui segments">
+							<div class="ui teal segment" >
+							关注 <div  class="ui black header m-inline-block m-text-thin" th:text="${user.watch}">123</div><br>
+							粉丝 <div  class="ui black header m-inline-block m-text-thin" th:text="${user.watched}">123</div><br>
+							</div>
+						</div>
+                    </div>
+                    </div>
+
+                </div>
+                
+			
+
+              
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+<br>
+<br>
+<!--底部footer-->
+<footer th:replace="user/_fragments :: footer" class="ui inverted vertical segment m-padded-tb-massive">
+</footer>
+<!--/*/<th:block th:replace="_fragments :: script">/*/-->
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/semantic-ui/2.2.4/semantic.min.js"></script>
+<!--/*/</th:block>/*/-->
+
+<script>
+    $('.menu.toggle').click(function () {
+        $('.m-item').toggleClass('m-mobile-hide');
+    });
+    	$('.ui.dropdown').dropdown({
+      on : 'hover'
+    });
+</script>
+</body>
+</html>
